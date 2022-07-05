@@ -1,19 +1,36 @@
 <!DOCTYPE html>
+<script type="module", src='index.js'></script>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>:3</title>
 </head>
 <body>
-    <textarea id='textField'>artist - track</textarea>
+    <textarea id='textField'>p4pillio</textarea>
     </br>
     <button id='button'>Submit</button>
-    <script src='index.js'></script>
-    </br>
-    </br>
-    <b><text>Length: </text></b>
-    <text id='output'> </text>
+    <div id='content'>
+        <table id='books' cellpadding='10px' style="text-align:center">
+            <thead>
+                <tr>
+                    <th>Time Listened</th>
+                    <th>Track Number</th>
+                    <th>Errors</th>
+                    <th>Error List</th>
+                </tr>
+                <tr>
+                    <td id="timeListened"></td>
+                    <td id="trackNumber"></td>
+                    <td id="errors"></td>
+                    <td id="errorList", class="output4", style="white-space: pre-line"></td>
+                </tr>                   
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
