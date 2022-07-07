@@ -9,8 +9,11 @@
 </head>
 <body>
     <textarea id='textField'>p4pillio</textarea>
+    <input type="checkbox" id="deezerBtn">
+    <label for="deezerBtn">Enable Deezer?</label>
     </br>
     <button id='button'>Submit</button>
+    <button id='button1'>Stop</button>
     <div id='content'>
         <table id='books' cellpadding='10px' style="text-align:center">
             <thead>
@@ -19,18 +22,19 @@
                     <th>Track Number</th>
                     <th>Errors</th>
                     <th>Error List</th>
+                    <th>Runtime</th>
                 </tr>
                 <tr style="white-space: pre-line">
                     <td id="timeListened"></td>
                     <td id="trackNumber"></td>
                     <td id="errors"></td>
-                    <td id="errorList", class="output4"></td>
+                    <td id="errorList"></td>
+                    <td id="runtime"></td>
                 </tr>                   
             </thead>
-            <tbody>
-
-            </tbody>
         </table>
     </div>
+    </br>
+    <body id="ranking" ></body>
 </body>
 </html>
