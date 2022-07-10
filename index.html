@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<script type="module", src='index.js'></script>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,14 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>:3</title>
 </head>
-<body>
-    <textarea id='textField'>p4pillio</textarea>
-    <input type="checkbox" id="deezerBtn">
-    <label for="deezerBtn">Enable Deezer?</label>
-    </br>
-    <button id='button'>Submit</button>
-    <button id='button1'>Stop</button>
-    <div id='content'>
+<body class="body">
+    <div class="form", id="form">
+        <div class="searchBar">
+            <input type="search", id='userInput', placeholder=" Last.fm username", class="userInput">
+            <input type="image", class="settings", src="lastfm.png">
+        </div>
+        <div id="deezerAll">
+            <input type="checkbox", id="deezerBtn">
+            <label for="deezerBtn">Enable Deezer?</label>
+        </div>
+            </br>
+        <button id='stopBtn'>Stop</button>
+    </div>
+    <div id='content'  style="white-space: pre-line">
         <table id='books' cellpadding='10px' style="text-align:center">
             <thead>
                 <tr>
@@ -24,17 +29,29 @@
                     <th>Error List</th>
                     <th>Runtime</th>
                 </tr>
-                <tr style="white-space: pre-line">
+                <tr>
                     <td id="timeListened"></td>
                     <td id="trackNumber"></td>
                     <td id="errors"></td>
-                    <td id="errorList"></td>
+                    <td>
+                        <button id="showBtn">Show</button>
+                    </td>
                     <td id="runtime"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <td id="errorList"></td>
+                    </td>
+                    <td></td>
                 </tr>                   
             </thead>
         </table>
     </div>
     </br>
-    <body id="ranking" ></body>
+<link rel= stylesheet href= style.css>
+<script type="text/javascript", src='index.js'></script>
+<script type="text/javascript", src='listeners.js'></script>
 </body>
 </html>
