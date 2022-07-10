@@ -1,3 +1,18 @@
+const api = 'https://ws.audioscrobbler.com/2.0/?format=json&';
+const apiKey = 'api_key=KEY';
+const limit = 'limit=200&'
+const period = "period=overall&"
+const sleep = (milliseconds) => {
+    return new Promise(resolve => setTimeout(resolve, milliseconds))
+}
+const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': 'KEY',
+		'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com'
+	}
+};
+
 //every great program has a long list of global variables, right?
 let stopAsked = false;
 let error = false;
@@ -34,12 +49,18 @@ async function get(user){
             //const artist = encodeURIComponent(artistRaw = artistRaw.split('(')[0])
             //const track = encodeURIComponent(trackRaw = trackRaw.split('(')[0])
             let duration = data.toptracks.track[j].duration
-            if(duration == 0 && deezerOn){
-                try{
-                    const deezerRes = await fetch('https://deezerdevs-deezer.p.rapidapi.com/search?q=' + artist + " " + track, options)
-                    const deezerData = await deezerRes.json()
-                    duration = deezerData.data[0].duration
-                }catch{
+            if(duration == 0){
+                if(deezerOn){
+                    try{
+                        const deezerRes = await fetch('https://deezerdevs-deezer.p.rapidapi.com/search?q=' + artist + " " + track, options)
+                        const deezerData = await deezerRes.json()
+                        duration = deezerData.data[0].duration
+                    }catch{
+                        failLog.push(artist + " - " + track)
+                        failCount += parseInt(playcount);
+                        error = true;
+                    }
+                }else{
                     failLog.push(artist + " - " + track)
                     failCount += parseInt(playcount);
                     error = true;
@@ -68,7 +89,7 @@ async function get(user){
             if(stopAsked){
                 i = pages - 1
                 j = tracks - 1
-            }-
+            }
         }
     }
     end()
@@ -79,7 +100,7 @@ function end(){
         playList.push(key)
     }
     for (let i = playList.length - 1; i >= 0; i--) {
-        //console.log((`${i}: ${listing[playList[i]]} - ${playList[i]} seconds`))
+        console.log((`${i}: ${listing[playList[i]]} - ${playList[i]} seconds`))
     }
 }
 
@@ -99,21 +120,19 @@ function anal(total){
         lettered = `${days} days, ${hours} hr, ${minutes} min, ${seconds} sec`
         analog = `${days}:${hours}:${minutes}:${seconds}`
     }
-    return `${analog}`
+    return `${lettered}`
 }
 
-document.getElementById('button').onclick = function onClick(){
+function onSubmit(user){
     reset()
-    const user = 'user=' + document.getElementById('textField').value + '&'
     pre = Date.now()
-
     if(document.getElementById('deezerBtn').checked){
         deezerOn = true
     }
     get(user);
 }
 
-document.getElementById('button1').onclick = function onClick(){
+function onStop() {
     stopAsked = true;
 }
 
